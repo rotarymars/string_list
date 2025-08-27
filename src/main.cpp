@@ -8,15 +8,14 @@
 const std::string characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", output_dir = "output/";
 
 void increment_string(std::string &s) {
+  std::cout << s << std::endl;
   if(s == "") {
     s = characters[0];
     return;
   }
-  std::cout << "1" << std::endl;
   auto it = s.rbegin();
-  while(*it == characters.back() || it != s.rend())
+  while(*it == characters.back() && it != s.rend())
     ++it;
-  std::cout<<2<<std::endl;
   if(it != s.rend()) {
     *it = *next(std::find(characters.begin(), characters.end(), *it));
   }
@@ -24,13 +23,10 @@ void increment_string(std::string &s) {
     s = std::string(s.size() + 1, characters[0]);
     return;
   }
-  std::cout<<3<<std::endl;
-  auto itt = it.base();
-  std::cout<<4<<std::endl;
-  while(++itt != s.end()) {
-    *itt = characters[0];
+  std::string::iterator itt = it.base();
+  while(itt != s.end()) {
+    *++itt = characters[0];
   }
-  std::cout<<5<<std::endl;
   return;
 }
 
@@ -64,12 +60,12 @@ int main() {
   std::smatch last_file;
   if(!files.empty())
     std::regex_match(files.back(), last_file, file_pattern);
-  std::fstream output_file(files.empty() ? std::string("0.txt") : (std::to_string(1 + std::stoll(last_file[1])) + std::string(".txt")));
+  std::ofstream output_file(files.empty() ? output_dir + std::string("0.txt") : output_dir + (std::to_string(1 + std::stoll(last_file[1])) + std::string(".txt")));
   std::cout << "Initialized file" << std::endl;
   for(long long i = 0; i < line_count; ++i) {
     increment_string(last);
     std::cout << i << std::endl;
-    output_file << last << '\n';
+    output_file << last << std::endl;;
   }
   return 0;
 }
