@@ -20,11 +20,9 @@ jobs:
 
       - name: Run script
         run: |
-          ./do.sh
-          ./do.sh
-          ./do.sh
-          ./do.sh
-          ./do.sh
+          for i in {1..100}; do
+            ./do.sh
+          done
 
       - name: Commit and push generated files
         run: |

@@ -3,7 +3,9 @@
 for directory in */; do
   echo Processing $directory
   cd $directory
-  g++ -O3 main.cpp
+  if [ ! -f a.out ]; then
+    g++ -O3 main.cpp
+  fi
   ./a.out
   cd ..
 done
