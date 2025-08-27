@@ -21,6 +21,10 @@ jobs:
       - name: Run script
         run: |
           ./do.sh
+          ./do.sh
+          ./do.sh
+          ./do.sh
+          ./do.sh
 
       - name: Commit and push generated files
         run: |
