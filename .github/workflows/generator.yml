@@ -20,7 +20,7 @@ jobs:
 
       - name: Run script
         run: |
-          for i in {1..100}; do
+          for i in {1..1000}; do
             ./do.sh
           done
 
